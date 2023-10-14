@@ -16,7 +16,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     <p className='text-sm ml-6 text-white mr-4 font-opensans'>{description}</p>
                 </div>
                 <div className='ml-4 max-sm:my-4'>
-                    <Button size='small' href='/aboutus' className='bg-black' variant='contained'>More Info</Button>
+                    <Button size='small' href='/about-us' className='bg-black' variant='contained'>More Info</Button>
                 </div>
             </div>
         </>
@@ -28,7 +28,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className='pt-20 pl-40 w-1/2 flex flex-col justify-center max-md:pl-10 max-sm:w-fit max-sm:h-max'>
                     <h1 className='text-5xl font-poppins font-semibold mb-5'>JOWEL<br/><p className='text-emerald-600'>DECOR</p></h1>
                     <p className='font-poppins opacity-80 max-sm:h-fit'>Where you find house stuff you need, Enjoy!</p>
-                    <button className='bg-black text-white font-opensans w-36 font-light h-10 mt-6 uppercase hover:bg-slate-900 duration-300'>Explore Now</button>
+                    <a href="/store"><button className='bg-black text-white font-opensans w-36 font-light h-10 mt-6 uppercase hover:bg-slate-900 duration-300'>Explore Now</button></a>
                 </div>
                 <div className='pt-20 w-1/2 flex justify-center items-center max-sm:w-fit'>
                     <img className='h-72 rounded over pl-2 pr-2' src="https://www.kitcheninteriors.ca/wp-content/uploads/2023/03/8AsK9FUA.jpeg" alt="" />

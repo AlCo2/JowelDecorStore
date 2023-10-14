@@ -79,7 +79,7 @@ const Navbar = ({page}) => {
                             <ul className='flex gap-10 font-poppins'>
                                 <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="Home"? 'text-rose-500':''}`} href="/"><AiOutlineHome/>Home</a></li>
                                 <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="Store"? 'text-rose-500':''}`} href="/store"><BsShop/>Store</a></li>
-                                <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="Aboutus"? 'text-rose-500':''}`} href="/about-us"><BsInfoCircle/>About us</a></li>
+                                <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="About-us"? 'text-rose-500':''}`} href="/about-us"><BsInfoCircle/>About us</a></li>
                             </ul>
                         </div>
                         <Component/>

@@ -32,7 +32,7 @@ const Store = () => {
               <p className='font-poppins font-medium text-xl'>Products</p>
             </div>
             <div>
-              <input type="text" placeholder='Search Product...' name="" id="" className='rounded-xl border-none bg-gray-300 bg-opacity-25 mr-80 w-72'/>
+              <input type="text" placeholder='Search Product...' name="" id="" className='rounded-xl border-none bg-gray-300 bg-opacity-25 mr-52 w-72'/>
             </div>
           </div>
           <div className='w-full flex justify-center'>
