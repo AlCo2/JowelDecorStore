@@ -25,7 +25,7 @@ const Navbar = ({page}) => {
                 <>
                     <div className='flex items-center'>
                         <div>
-                            <a href="" className='hover:text-gray-300'>
+                            <a href="/cart" className='hover:text-gray-300'>
                                 <Badge badgeContent={1} color="primary">
                                     <BiShoppingBag/>
                                 </Badge>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,6 +28,8 @@ Route::get('/', function () {
 });
 
 Route::get('/store', [StoreController::class, 'index']);
+
+Route::get('/cart', [CheckoutController::class, 'index']);
 
 Route::get('/about-us', function(){
     return Inertia::render('About-us');
