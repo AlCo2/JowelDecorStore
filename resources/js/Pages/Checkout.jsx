@@ -5,6 +5,16 @@ import { BsTrashFill } from 'react-icons/bs';
 
 const Checkout = () => {
 
+  const Order = () =>{
+    return(
+    <tr className=''>
+      <td className='flex gap-4 items-center p-2'><img width={60} src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png" alt="" />Product</td>
+      <td className='text-center'>12</td>
+      <td>$1779</td>
+      <td className='text-red-500'><a href=""><BsTrashFill/></a></td>
+    </tr>
+    )
+  }
   const OrderSummary = () =>{
     return (
       <div className='h-52 w-64 bg-white rounded-md'>
@@ -55,12 +65,7 @@ const Checkout = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className=''>
-                      <td className='flex gap-4 items-center p-2'><img width={60} src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png" alt="" />Product</td>
-                      <td className='text-center'>12</td>
-                      <td>$1779</td>
-                      <td className='text-red-500'><BsTrashFill/></td>
-                    </tr>
+                    <Order/>
                   </tbody>
                 </table>
               </div>
