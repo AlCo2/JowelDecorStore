@@ -1,16 +1,18 @@
 import Footer from '@/Components/Footer';
 import Navbar from '@/Components/Navbar';
+import { usePage } from '@inertiajs/react';
 import React from 'react'
 import { BsTrashFill } from 'react-icons/bs';
 
-const Checkout = () => {
-
-  const Order = () =>{
+const Checkout = ({children}) => {
+  const { products } = usePage().props;
+  const { auth } = usePage().props;
+  const Order = ({name, price, Q}) =>{
     return(
     <tr className=''>
-      <td className='flex gap-4 items-center p-2'><img width={60} src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png" alt="" />Product</td>
-      <td className='text-center'>12</td>
-      <td>$1779</td>
+      <td className='flex gap-4 items-center p-2'><img width={60} src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png" alt="" />{name}</td>
+      <td className='text-center'>{Q}</td>
+      <td>${price}</td>
       <td className='text-red-500'><a href=""><BsTrashFill/></a></td>
     </tr>
     )
@@ -65,7 +67,9 @@ const Checkout = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <Order/>
+                    {products.map(product=>(
+                      <Order key={product.id} name={product.title} price={product.price} Q={product.Q}/>
+                    ))}
                   </tbody>
                 </table>
               </div>
