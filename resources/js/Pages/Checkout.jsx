@@ -1,7 +1,7 @@
 import Footer from '@/Components/Footer';
 import Navbar from '@/Components/Navbar';
 import { usePage } from '@inertiajs/react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsTrashFill } from 'react-icons/bs';
 import axios from 'axios';
 
@@ -9,16 +9,44 @@ const Checkout = ({children}) => {
   const { products } = usePage().props;
   const [data, setData] = useState(products);
   const [track_Q, setTrack_Q] = useState(0);
+  const [order_summary, setOrder_summary] = useState({
+    discount:0.00,
+    delivary:0.00,
+    tax:0.00,
+    total:0.00,
+  })
   const { auth } = usePage().props;
+
+  useEffect(()=>{
+    let total = 0;
+    data.map(product=>{
+      total+=product.price;
+    })
+    total+=order_summary.tax;
+    total+=order_summary.delivary;
+    total-=order_summary.discount;
+    setOrder_summary(prevState => ({
+      ...prevState,
+      total: total,
+  }));
+  }, [track_Q])
+  
   const deleteItem = async (product_id) =>{
   const values = {
     product_id:product_id,
     user_id:auth.user.id,
   }
   await axios.post("/deleteproduct", values);
-  const newData = data.filter((product)=>product.id !== product_id);
+  const newData = await data.filter((product)=>product.id !== product_id);
   setData(newData);
   setTrack_Q(track_Q-1);
+  order_summary.total = 0;
+  data.map(product=>{
+    order_summary.total+=product.price;
+  })
+  order_summary.total+=order_summary.tax;
+  order_summary.total+=order_summary.delivary;
+  order_summary.total-=order_summary.discount;
   }
   const Order = ({id,name, price, Q}) =>{
     return(
@@ -40,19 +68,19 @@ const Checkout = ({children}) => {
               <div className='ml-4'>
                 <div className='flex justify-between items-center mb-2'>
                   <p className='opacity-60 font-opensans'>Discount</p>
-                  <p className='font-poppins text-sm mr-4'>$00.00</p>
+                  <p className='font-poppins text-sm mr-4'>${order_summary.discount}</p>
                 </div>
                 <div className='flex justify-between items-center mb-2'>
                   <p className='opacity-60 font-opensans'>Delivery</p>
-                  <p className='font-poppins text-sm mr-4'>$29.99</p>
+                  <p className='font-poppins text-sm mr-4'>${order_summary.delivary}</p>
                 </div>
                 <div className='flex justify-between items-center mb-2'>
                   <p className='opacity-60 font-opensans'>Tax</p>
-                  <p className='font-poppins text-sm mr-4'>$39.99</p>
+                  <p className='font-poppins text-sm mr-4'>${order_summary.tax}</p>
                 </div>
                 <div className='flex justify-between items-center'>
                   <p className='opacity-60 font-opensans'>Total</p>
-                  <p className='font-poppins font-semibold mr-4'>$1879.93</p>
+                  <p className='font-poppins font-semibold mr-4'>${order_summary.total}</p>
                 </div>
               </div>
             </div>
