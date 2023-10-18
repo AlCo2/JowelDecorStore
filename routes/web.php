@@ -38,6 +38,8 @@ Route::get('/about-us', function(){
 
 Route::post('/createorder', [OrderController::class, 'makeOrder'])->middleware("auth");
 Route::post('/deleteproduct', [OrderController::class, 'deleteProduct'])->middleware("auth");
+Route::get('/api/getordercreated', [OrderController::class, 'getHowManyOrder'])->middleware('auth');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

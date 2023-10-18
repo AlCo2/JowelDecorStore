@@ -4,11 +4,19 @@ import { usePage } from '@inertiajs/react';
 import Dropdown from '@/Components/Dropdown';
 import { Badge } from '@mui/material';
 import { BiShoppingBag } from 'react-icons/bi';
-import { useState } from 'react';
-const Navbar = ({page}) => {
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+const Navbar = ({page, track_Q}) => {
     const {auth} = usePage().props
     const [navOn, setNavOn] = useState(false)
-    
+    const [Q, setQ] = useState(0);
+    useEffect(()=>{
+        const getData = async () =>{
+            const response = await axios.get('api/getordercreated');   
+            setQ(response.data);
+        }
+        getData();
+    }, [track_Q])
     const Component = () =>{
         if(!auth.user){
             return (
@@ -27,7 +35,7 @@ const Navbar = ({page}) => {
                     <div className='flex items-center'>
                         <div>
                             <a href="/cart" className='hover:text-gray-300'>
-                                <Badge badgeContent={1} color="primary">
+                                <Badge badgeContent={Q} color="primary">
                                     <BiShoppingBag/>
                                 </Badge>
                             </a>

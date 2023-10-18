@@ -53,4 +53,10 @@ class OrderController extends Controller
         $product_to_delete->delete();
         return "done";
     }
+    public function getHowManyOrder(){
+        $user_id = auth()->user()->id;
+        $order = Order::where("user_id", $user_id)->first();
+        $data = Order_created::where('order_id', $order->id)->get();
+        return response(count($data),200);
+    }
 }

@@ -9,6 +9,7 @@ import { router, usePage } from '@inertiajs/react';
 const Store = ({children}) => {
   const { data } = usePage().props;
   const { auth } = usePage().props;
+  const [track_Q, setTrack_Q] = useState(0);
   const addToCart = async (id, price) =>{
     if(!auth.user){
       router.post('/createorder')      
@@ -20,6 +21,7 @@ const Store = ({children}) => {
       product_price:price,
     }
     await axios.post("/createorder", values);
+    setTrack_Q(track_Q+1);
   }
   //cart Item:
   const ItemDiv = ({id, image, title, price, stock}) =>{
@@ -39,7 +41,7 @@ const Store = ({children}) => {
   }
   return (
     <>
-        <Navbar page={"Store"}/>
+        <Navbar page={"Store"} track_Q={track_Q}/>
         <div>
           <div className='mt-10 ml-28 flex justify-between items-center'>
             <div>

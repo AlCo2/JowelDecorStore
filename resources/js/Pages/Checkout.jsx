@@ -8,6 +8,7 @@ import axios from 'axios';
 const Checkout = ({children}) => {
   const { products } = usePage().props;
   const [data, setData] = useState(products);
+  const [track_Q, setTrack_Q] = useState(0);
   const { auth } = usePage().props;
   const deleteItem = async (product_id) =>{
   const values = {
@@ -17,6 +18,7 @@ const Checkout = ({children}) => {
   await axios.post("/deleteproduct", values);
   const newData = data.filter((product)=>product.id !== product_id);
   setData(newData);
+  setTrack_Q(track_Q-1);
   }
   const Order = ({id,name, price, Q}) =>{
     return(
@@ -60,7 +62,7 @@ const Checkout = ({children}) => {
 
   return (
     <>
-        <Navbar/>
+        <Navbar track_Q={track_Q}/>
         <div className='w-full min-h-screen flex justify-center bg-gray-200'>
           <div className='w-11/12 flex justify-between my-10'>
             <div className='w-9/12 bg-white rounded-md h-fit'>

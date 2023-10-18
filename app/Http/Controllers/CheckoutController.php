@@ -14,6 +14,7 @@ class CheckoutController extends Controller
         $user_id = auth()->user()->id;
         $order = Order::where("user_id", $user_id)->first();
         $data = Order_created::where('order_id', $order->id)->get();
+        $Q = count($data);
         $products = [];
         foreach($data as $order){
             $product_in_db = Product::where('id', $order->product_id)->first();
