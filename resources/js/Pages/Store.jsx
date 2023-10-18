@@ -19,8 +19,7 @@ const Store = ({children}) => {
       user_id:auth.user.id,
       product_price:price,
     }
-    const response = await axios.post("/createorder", values);
-    console.log(response);
+    await axios.post("/createorder", values);
   }
   //cart Item:
   const ItemDiv = ({id, image, title, price, stock}) =>{

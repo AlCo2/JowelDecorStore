@@ -28,7 +28,6 @@ class OrderController extends Controller
                 $newOrder->Q = 1;
                 $newOrder->price = $product_price;
                 $newOrder->save();
-                return "done making first order";
             }
 
         }else{
@@ -43,8 +42,15 @@ class OrderController extends Controller
             $newOrder->Q = 1;
             $newOrder->price = $product_price;
             $newOrder->save();
-            return "done making first order";
         }
+    }
 
+    public function deleteProduct(Request $request){
+        $product_id = $request->input('product_id');
+        $user_id = $request->input('user_id');
+        $order = Order::where("user_id", $user_id)->first();
+        $product_to_delete = Order_created::where("order_id", $order->id)->where("product_id", $product_id)->first();
+        $product_to_delete->delete();
+        return "done";
     }
 }

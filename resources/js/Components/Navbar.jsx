@@ -8,6 +8,7 @@ import { useState } from 'react';
 const Navbar = ({page}) => {
     const {auth} = usePage().props
     const [navOn, setNavOn] = useState(false)
+    
     const Component = () =>{
         if(!auth.user){
             return (

@@ -30,13 +30,14 @@ Route::get('/', function () {
 
 Route::get('/store', [StoreController::class, 'index']);
 
-Route::get('/cart', [CheckoutController::class, 'index']);
+Route::get('/cart', [CheckoutController::class, 'index'])->middleware("auth");
 
 Route::get('/about-us', function(){
     return Inertia::render('About-us');
 });
 
 Route::post('/createorder', [OrderController::class, 'makeOrder'])->middleware("auth");
+Route::post('/deleteproduct', [OrderController::class, 'deleteProduct'])->middleware("auth");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
