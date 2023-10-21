@@ -3,14 +3,19 @@ import {AiFillCloseCircle, AiOutlineBars, AiOutlineHome} from 'react-icons/ai'
 import { usePage } from '@inertiajs/react';
 import Dropdown from '@/Components/Dropdown';
 import { Badge } from '@mui/material';
-import { BiShoppingBag } from 'react-icons/bi';
+import { BiShoppingBag, BiSolidDetail } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 const Navbar = ({page, track_Q}) => {
     const {auth} = usePage().props
+    const [admin, setAdmin] = useState(false);
     const [navOn, setNavOn] = useState(false)
     const [Q, setQ] = useState(0);
     useEffect(()=>{
+        if(!auth.user){
+            return;
+        }
+        setAdmin(auth.user.is_admin);
         const getData = async () =>{
             const response = await axios.get('api/getordercreated');
             setQ(response.data);
@@ -88,7 +93,9 @@ const Navbar = ({page, track_Q}) => {
                             <ul className='flex gap-10 font-poppins'>
                                 <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="Home"? 'text-rose-500':''}`} href="/"><AiOutlineHome/>Home</a></li>
                                 <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="Store"? 'text-rose-500':''}`} href="/store"><BsShop/>Store</a></li>
+                                {admin?<li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="dashboard"? 'text-rose-500':''}`} href="/dashboard"><BiSolidDetail/>Dashboard</a></li>:''}
                                 <li><a className={`duration-300 font-normal hover:text-rose-500 flex items-center gap-1 ${page=="About-us"? 'text-rose-500':''}`} href="/about-us"><BsInfoCircle/>About us</a></li>
+                                
                             </ul>
                         </div>
                         <Component/>
