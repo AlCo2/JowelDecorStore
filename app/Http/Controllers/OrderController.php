@@ -56,7 +56,12 @@ class OrderController extends Controller
     public function getHowManyOrder(){
         $user_id = auth()->user()->id;
         $order = Order::where("user_id", $user_id)->first();
-        $data = Order_created::where('order_id', $order->id)->get();
-        return response(count($data),200);
+        if($order){
+            $data = Order_created::where('order_id', $order->id)->get();
+            if($data){
+                return response(count($data),200);        
+            }   
+        }
+        return response(0, 200);
     }
 }

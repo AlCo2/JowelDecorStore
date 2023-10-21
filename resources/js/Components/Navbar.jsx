@@ -12,7 +12,7 @@ const Navbar = ({page, track_Q}) => {
     const [Q, setQ] = useState(0);
     useEffect(()=>{
         const getData = async () =>{
-            const response = await axios.get('api/getordercreated');   
+            const response = await axios.get('api/getordercreated');
             setQ(response.data);
         }
         getData();

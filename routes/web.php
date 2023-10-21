@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Middleware\CheckAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,6 +36,11 @@ Route::get('/cart', [CheckoutController::class, 'index'])->middleware("auth");
 Route::get('/about-us', function(){
     return Inertia::render('About-us');
 });
+
+Route::get('/dashboard', function(){
+    return Inertia::render("Dashboard");
+})->middleware(["auth",CheckAdmin::class]);
+
 
 Route::post('/createorder', [OrderController::class, 'makeOrder'])->middleware("auth");
 Route::post('/deleteproduct', [OrderController::class, 'deleteProduct'])->middleware("auth");
