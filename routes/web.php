@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
@@ -46,6 +47,7 @@ Route::post('/createorder', [OrderController::class, 'makeOrder'])->middleware("
 Route::post('/deleteproduct', [OrderController::class, 'deleteProduct'])->middleware("auth");
 Route::get('/api/getordercreated', [OrderController::class, 'getHowManyOrder'])->middleware('auth');
 
+Route::post("/api/addproduct", [ProductController::class, 'addProduct'])->middleware(['auth', CheckAdmin::class]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
