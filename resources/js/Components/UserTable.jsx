@@ -6,21 +6,17 @@ const columns = [
   { field: 'name', headerName: 'name', width: 130 },
   { field: 'email', headerName: 'email',width: 200 },
   {
-    field: 'admin',
+    field: 'is_admin',
     headerName: 'Admin',
     width: 90,
   },
 ];
 
-const rows = [
-  { id: 1, title: 'something', Q: 22, price: 350 },  
-];
-
-export default function UserTable() {
+export default function UserTable({data}) {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         initialState={{
           pagination: {

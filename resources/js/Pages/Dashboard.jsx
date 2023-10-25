@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, router } from '@inertiajs/react';
+import { Head, router, usePage } from '@inertiajs/react';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -47,6 +47,9 @@ function CustomTabPanel(props) {
 
 export default function Dashboard({ auth }) {
     const [value, setValue] = React.useState(0);
+    const { users } = usePage().props;
+    const { products } = usePage().props;
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
       };
@@ -72,10 +75,10 @@ export default function Dashboard({ auth }) {
                             </Tabs>
                         </Box>
                         <CustomTabPanel value={value} index={0}>
-                            <UserTable/>
+                            <UserTable data={users}/>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={1}>
-                            <ProductTable/>
+                            <ProductTable data={products}/>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={2}>
                             <p>soon</p>

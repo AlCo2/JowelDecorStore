@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CheckoutController;
@@ -38,9 +39,7 @@ Route::get('/about-us', function(){
     return Inertia::render('About-us');
 });
 
-Route::get('/dashboard', function(){
-    return Inertia::render("Dashboard");
-})->middleware(["auth",CheckAdmin::class]);
+Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware(["auth",CheckAdmin::class]);
 
 
 Route::post('/createorder', [OrderController::class, 'makeOrder'])->middleware("auth");
