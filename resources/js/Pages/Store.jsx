@@ -27,7 +27,7 @@ const Store = ({children}) => {
   const ItemDiv = ({id, image, title, price, stock}) =>{
     return (
       <div className='border-2 w-56 h-64 rounded-lg duration-300 hover:cursor-pointer'>
-        <div className='w-full h-3/5 bg-cover bg-center' /*style={{backgroundImage:`URL('${image}')`}}*/ ></div>
+        <div className='w-full h-3/5 bg-cover bg-center' style={{backgroundImage:`url('images/${image}')`}} ></div>
         <div className='ml-4 mt-2'><p className='font-poppins font-semibold text-sm'>{title}</p></div>
         <div className='ml-4 mt-2'><p className='font-poppins font-bold text-base opacity-70'>${price}</p></div>
         <div className='ml-4 flex justify-between items-center'>
@@ -54,7 +54,7 @@ const Store = ({children}) => {
           <div className='w-full flex justify-center'>
             <div className='w-5/6 min-h-screen p-2 mt-10 flex flex-wrap gap-4'>
               {data.map(product=>(
-                <ItemDiv key={product.id} id={product.id} title={product.title} price={product.price} stock={product.Q} />
+                <ItemDiv key={product.id} image={product.image} id={product.id} title={product.title} price={product.price} stock={product.Q} />
               ))}
             </div>
           </div>

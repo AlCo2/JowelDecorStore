@@ -4,10 +4,6 @@ import { Button } from '@mui/material';
 import { BiTrash } from 'react-icons/bi';
 import AlertDialog from './AlertDialog';
 
-const confirmDelete = (row) =>{
-  console.log(row);
-}
-
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'title', headerName: 'title', width: 130 },

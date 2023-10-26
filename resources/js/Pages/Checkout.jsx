@@ -48,10 +48,10 @@ const Checkout = ({children}) => {
   order_summary.total+=order_summary.delivary;
   order_summary.total-=order_summary.discount;
   }
-  const Order = ({id,name, price, Q}) =>{
+  const Order = ({id,name, image,price, Q}) =>{
     return(
     <tr className=''>
-      <td className='flex gap-4 items-center p-2'><img width={60} className='rounded-sm'  src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png" alt="" />{name}</td>
+      <td className='flex gap-4 items-center p-2'><img width={60} className='rounded-sm' src={`images/${image}`} alt="" />{name}</td>
       <td className='text-center'>{Q}</td>
       <td>${price}</td>
       <td className='text-red-500'><BsTrashFill className='cursor-pointer' onClick={()=>deleteItem(id)} /></td>
@@ -109,7 +109,7 @@ const Checkout = ({children}) => {
                   </thead>
                   <tbody>
                     {data.map(product=>(
-                      <Order key={product.id} id={product.id} name={product.title} price={product.price} Q={product.Q}/>
+                      <Order key={product.id} image={product.image} id={product.id} name={product.title} price={product.price} Q={product.Q}/>
                     ))}
                   </tbody>
                 </table>

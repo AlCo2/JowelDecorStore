@@ -21,6 +21,7 @@ class CheckoutController extends Controller
                 $product = [
                     "id"=>$product_in_db->id,
                     "title" => $product_in_db->title,
+                    "image" => $product_in_db->image,
                     "Q" => $order->Q,
                     "price" => $order->price,
                 ];
