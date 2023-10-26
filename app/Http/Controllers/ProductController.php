@@ -15,4 +15,8 @@ class ProductController extends Controller
             'price' => ['required'],
         ]));
     }
+    public function deleteProduct($id){
+        $product = Product::where('id', $id)->first();
+        $product->delete();
+    }
 }

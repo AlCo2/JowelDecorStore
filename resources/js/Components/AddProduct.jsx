@@ -20,21 +20,21 @@ const AddProduct = () => {
         router.post('/api/addproduct', values);
       }
   return (
-    <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                {/* <div className="p-6 text-gray-900 dark:text-gray-100">You're logged in!</div> */}
-                <div className=''>
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
-                        <input id='title' onChange={handleChange} value={values.title} type="text" name="product Name" className='w-52 h-8' />
-                        <input onChange={handleChange} value={values.Q} type="number" name="Q" id="Q"  className='w-20 h-8'/>
-                        <input onChange={handleChange} value={values.price} type="number" name="price" id="price" className='w-20 h-8'/>
-                        <button className='bg-black text-white w-20'>Submite</button>
-                    </form>
-                </div>
-            </div>
+        <div className='flex justify-center'>
+            <form onSubmit={handleSubmit} className='py-2'>
+              <div className='flex gap-2 my-2'>
+                <input id='title' placeholder='Product Name' onChange={handleChange} value={values.title} type="text" name="product Name" className='w-52 h-8 rounded-sm' />
+                <input onChange={handleChange} value={values.Q} type="number" name="Q" id="Q"  className='w-20 h-8 rounded-sm'/>
+                <input onChange={handleChange} value={values.price} type="number" name="price" id="price" className='w-20 h-8 rounded-sm'/>
+              </div>
+              <div className='grid place-content-center'>
+                <input className='border-2' type="file" name="" id="" accept='png'/>
+              </div>
+              <div className='my-2 grid place-items-center'>
+                <button className='bg-black text-white w-20 h-10 rounded-sm'>Submite</button>
+              </div>
+            </form>
         </div>
-    </div>
   )
 }
 

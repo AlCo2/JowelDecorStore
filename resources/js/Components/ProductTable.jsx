@@ -1,5 +1,12 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { Button } from '@mui/material';
+import { BiTrash } from 'react-icons/bi';
+import AlertDialog from './AlertDialog';
+
+const confirmDelete = (row) =>{
+  console.log(row);
+}
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -10,6 +17,13 @@ const columns = [
     headerName: 'price',
     type: 'number',
     width: 90,
+  },
+  {
+    field: "action",
+    headerName: "",
+    sortable: false,
+    renderCell: ({ row })=>
+      <AlertDialog row={row}/>          
   },
 ];
 

@@ -9,6 +9,7 @@ import { BsBox, BsPerson } from 'react-icons/bs';
 import Table from '@/Components/Table';
 import ProductTable from '@/Components/ProductTable';
 import UserTable from '@/Components/UserTable';
+import AddProduct from '@/Components/AddProduct';
 
 
 function CustomTabPanel(props) {
@@ -63,9 +64,6 @@ export default function Dashboard({ auth }) {
 
             <div className="">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                  <div className='text-center'>
-                    Imad Form....
-                  </div>
                     <Box sx={{ width: '100%' }}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -78,6 +76,7 @@ export default function Dashboard({ auth }) {
                             <UserTable data={users}/>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={1}>
+                            <AddProduct/>
                             <ProductTable data={products}/>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={2}>
