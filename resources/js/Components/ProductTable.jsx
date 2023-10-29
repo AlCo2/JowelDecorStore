@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
-import { BiTrash } from 'react-icons/bi';
+import { BiPaint, BiPencil, BiPin, BiTrash } from 'react-icons/bi';
 import AlertDialog from './AlertDialog';
 
 const columns = [
@@ -13,6 +13,13 @@ const columns = [
     headerName: 'price',
     type: 'number',
     width: 90,
+  },
+  {
+    field: "edit",
+    headerName: "",
+    sortable: false,
+    renderCell: ({ row })=>
+      <Button onClick={()=>{console.log("Hello World")}} variant="outlined"><BiPencil/></Button>
   },
   {
     field: "action",

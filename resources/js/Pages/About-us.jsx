@@ -6,7 +6,7 @@ const About_us = () => {
   return (
     <>
         <Navbar page={"About-us"}/>
-        <div className='h-fit'>
+        <div className='h-fit m-10'>
             <h2 className='font-bold font-poppins text-center my-10'>Jowel Decor - Elevate Your Home with Style and Functionality</h2>
             <p className='text-center'>Step into the enchanting world of Jowel Decor, where every corner of your home finds its perfect expression. Located in the heart of the city, Jowel Decor stands as a beacon for those seeking quality, style, and functionality in their home and kitchen essentials. Our store is dedicated to providing you with a curated selection of products that cater to every taste and need, making us your ultimate destination for all things house and kitchen.</p>
             <h2 className='font-bold font-poppins'>The Storefront:</h2>

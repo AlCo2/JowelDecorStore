@@ -4,8 +4,8 @@ import { useState } from 'react';
 const AddProduct = () => {
     const [values, setValues] = useState({
         title: "",
-        Q: 0,
-        price: 0,
+        Q: '',
+        price: '',
         image:null,
       })
       function handleChange(e) {
@@ -26,8 +26,8 @@ const AddProduct = () => {
           return;
         router.post('/api/addproduct', values);
         values.title = '';
-        values.Q = 0;
-        values.price = 0;
+        values.Q = '';
+        values.price = '';
         values.image = null;
       }
   return (

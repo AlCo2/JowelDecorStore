@@ -24,7 +24,7 @@ export default function AlertDialog({row}) {
   };
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button color='error' variant="outlined" onClick={handleClickOpen}>
         <BiTrash/> 
       </Button>
       <Dialog

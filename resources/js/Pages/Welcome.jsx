@@ -48,7 +48,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 </div>
                 <div className='max-sm:hidden absolute w-1/2 bg-cover bg-center h-64 left-1/4 rounded-sm top-1/2' style={{backgroundImage:"URL('https://www.ikea.com/images/5a/20/5a203f990f69e8aa551633548db4aa60.jpg?f=sg)"}}  alt=""></div>
             </div>
-            <div className='sm:h-max mt-10 flex justify-center gap-10 flex-wrap'>
+            <div className='sm:h-max mt-10 flex justify-center gap-10 flex-wrap mb-10'>
                 <Card icon={<AiFillTag/>} name="Quality You Can Trust" 
                 description={"We believe that your home deserves the very best. That's why we source our products from trusted manufacturers known for their craftsmanship and attention to detail. Rest assured, every item in our store is built to stand the test of time."}  
                 />

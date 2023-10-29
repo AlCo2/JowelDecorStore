@@ -50,7 +50,6 @@ export default function Dashboard({ auth }) {
     const [value, setValue] = React.useState(0);
     const { users } = usePage().props;
     const { products } = usePage().props;
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
       };
