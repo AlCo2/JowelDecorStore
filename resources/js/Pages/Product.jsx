@@ -1,17 +1,35 @@
 import FixedRating from '@/Components/FiexedRating';
 import Navbar from '@/Components/Navbar';
 import RatingBar from '@/Components/Rating';
-import { usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import { Rating } from '@mui/material';
+import axios from 'axios';
 import React from 'react'
+import { useState } from 'react';
 import { BiShoppingBag } from 'react-icons/bi';
 import { BsEyeglasses, BsPlus } from 'react-icons/bs';
 
 const Product = () => {
   const { product } = usePage().props;
+  const { auth } = usePage().props;
+  const [track_Q, setTrack_Q] = useState(0);  
+  const addToCart = async () =>{
+    if(!auth.user){
+      router.post('/createorder')      
+      return;
+    }
+    const values = {
+      product_id:product.id,
+      user_id:auth.user.id,
+      product_price:product.price,
+    }
+    await axios.post("/createorder", values);
+    setTrack_Q(track_Q+1);
+  }
+
   return (
     <>
-      <Navbar/>
+      <Navbar track_Q={track_Q}/>
       <div className='mt-10 pl-10'>
         <p>Store</p>
       </div>
@@ -33,12 +51,12 @@ const Product = () => {
             <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, molestiae velit, neque eos adipisci voluptate eaque expedita minima eligendi voluptatum deserunt nemo dignissimos, recusandae tempora consequuntur cupiditate quis iusto ex!</p>
           </div>
           <div className='flex gap-2'>
-            <label htmlFor="" className='font-opensans'>Price:</label>
+            <p className='font-opensans'>Price:</p>
             <p className='mt-2 text-xl'>${product.price}</p>
           </div>
           <div className='flex flex-col gap-2'>
             <button className='bg-blue-600 border-2 border-blue-600 w-56 p-2 rounded-md text-white font-poppins font-medium flex justify-center items-center gap-2'><BiShoppingBag/>Buy Now</button>
-            <button className='bg-teal-400 border-2 border-teal-400 w-56 p-2 rounded-md text-white font-poppins font-medium flex justify-center items-center gap-2'><BsPlus/>Add To Cart</button>
+            <button onClick={addToCart} className='bg-teal-400 border-2 border-teal-400 w-56 p-2 rounded-md text-white font-poppins font-medium flex justify-center items-center gap-2'><BsPlus/>Add To Cart</button>
             <button className='bg-white w-56 p-2 rounded-md text-blue-500 border-blue-500 border-2 font-poppins font-medium flex justify-center items-center gap-2'><BsEyeglasses/>Add To Watch List</button>
           </div>
         </div>

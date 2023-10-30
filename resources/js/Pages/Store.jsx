@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import axios from 'axios';
 import { router, usePage } from '@inertiajs/react';
-import { useEffect } from 'react';
 
 const Store = ({children}) => {
   const { data } = usePage().props;
