@@ -32,6 +32,8 @@ Route::get('/', function () {
 });
 
 Route::get('/store', [StoreController::class, 'index']);
+Route::get('/store/{id}', [StoreController::class, 'getProduct']);
+
 
 Route::get('/cart', [CheckoutController::class, 'index'])->middleware("auth");
 

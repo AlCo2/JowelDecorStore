@@ -17,7 +17,7 @@ const Navbar = ({page, track_Q}) => {
         }
         setAdmin(auth.user.is_admin);
         const getData = async () =>{
-            const response = await axios.get('api/getordercreated');
+            const response = await axios.get('../api/getordercreated');
             setQ(response.data);
         }
         getData();

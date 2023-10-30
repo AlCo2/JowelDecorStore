@@ -13,4 +13,10 @@ class StoreController extends Controller
         return Inertia::render('Store',compact("data"));
     }
     
+    public function getProduct($id){
+        $product = Product::where('id', $id)->first();
+        if($product)
+            return Inertia::render('Product', compact('product'));
+        return "Not found";
+    }
 }

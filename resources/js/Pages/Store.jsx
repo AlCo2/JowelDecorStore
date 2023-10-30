@@ -27,9 +27,11 @@ const Store = ({children}) => {
   const ItemDiv = ({id, image, title, price, stock}) =>{
     return (
       <div className='border-2 w-56 h-64 rounded-lg duration-300 hover:cursor-pointer'>
+        <a href={`store/${id}`}>
         <div className='w-full h-3/5 bg-cover bg-center' style={{backgroundImage:`url('images/${image}')`}} ></div>
         <div className='ml-4 mt-2'><p className='font-poppins font-semibold text-sm'>{title}</p></div>
         <div className='ml-4 mt-2'><p className='font-poppins font-bold text-base opacity-70'>${price}</p></div>
+        </a>
         <div className='ml-4 flex justify-between items-center'>
         <div><p className='text-sm'>Stock: {stock}</p></div>
           <div className='mr-2'>
