@@ -5,11 +5,26 @@ import React, { useState } from 'react'
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import axios from 'axios';
 import { router, usePage } from '@inertiajs/react';
+import { useEffect } from 'react';
 
 const Store = ({children}) => {
   const { data } = usePage().props;
   const { auth } = usePage().props;
   const [track_Q, setTrack_Q] = useState(0);
+  const [search, setSearch] = useState('');
+  const [products, setProducts] = useState(data);
+  const handleChange = (e) =>{
+    setSearch(e.target.value);
+  } 
+  const handleSubmite = (e) =>{
+    e.preventDefault();
+    if(search.length>0){
+      setProducts(products.filter(product=>product.title.includes(search)));
+    }else{
+      setProducts(data);
+    }
+    
+  }
   const addToCart = async (id, price) =>{
     if(!auth.user){
       router.post('/createorder')      
@@ -50,12 +65,14 @@ const Store = ({children}) => {
               <p className='font-poppins font-medium text-xl'>Products</p>
             </div>
             <div>
-              <input type="text" placeholder='Search Product...' name="" id="" className='rounded-xl border-none bg-gray-300 bg-opacity-25 mr-52 w-72'/>
+              <form onSubmit={handleSubmite}>
+                <input type="text" value={search} onChange={handleChange} placeholder='Search Product...' name="" id="" className='rounded-xl border-none bg-gray-300 bg-opacity-25 mr-52 w-72'/>
+              </form>
             </div>
           </div>
           <div className='w-full flex justify-center'>
             <div className='w-5/6 min-h-screen p-2 mt-10 flex flex-wrap gap-4'>
-              {data.map(product=>(
+              {products.map(product=>(
                 <ItemDiv key={product.id} image={product.image} id={product.id} title={product.title} price={product.price} stock={product.Q} />
               ))}
             </div>
