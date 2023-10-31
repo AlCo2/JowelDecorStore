@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import { BiPaint, BiPencil, BiPin, BiTrash } from 'react-icons/bi';
 import AlertDialog from './AlertDialog';
+import EditProduct from './EditProduct';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -19,7 +20,7 @@ const columns = [
     headerName: "",
     sortable: false,
     renderCell: ({ row })=>
-      <Button onClick={()=>{console.log("Hello World")}} variant="outlined"><BiPencil/></Button>
+      <EditProduct row={row}/>
   },
   {
     field: "action",

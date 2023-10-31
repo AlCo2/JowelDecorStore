@@ -30,11 +30,12 @@ class ProductController extends Controller
     }
 
     public function updateProduct($request){
-        $product = Product::where('id', $request->input("id"))->first();
+        $id = $request->input("id");
+        $product = Product::find($id);
     }
 
     public function deleteProduct($id){
-        $product = Product::where('id', $id)->first();
+        $product = Product::find($id);
         File::delete(public_path('images/' . $product->image));
         $product->delete();
     }
