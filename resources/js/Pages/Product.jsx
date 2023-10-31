@@ -11,6 +11,8 @@ import { BsEyeglasses, BsPlus } from 'react-icons/bs';
 
 const Product = () => {
   const { product } = usePage().props;
+  const {categories} = usePage().props;
+  console.log(categories);
   const { auth } = usePage().props;
   const [track_Q, setTrack_Q] = useState(0);  
   const addToCart = async () =>{

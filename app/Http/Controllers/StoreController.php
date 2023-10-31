@@ -16,7 +16,8 @@ class StoreController extends Controller
     public function getProduct($id){
         $product = Product::where('id', $id)->first();
         if($product)
-            return Inertia::render('Product', compact('product'));
+            $categories = $product->categories;
+            return Inertia::render('Product', compact('product', 'categories'));
         return "Not found";
     }
 }

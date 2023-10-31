@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Category;
 
 class Controller extends BaseController
 {
@@ -16,6 +17,7 @@ class Controller extends BaseController
     public function dashboard(){
         $users = User::all();
         $products = Product::all();
-        return Inertia::render("Dashboard", compact('users', 'products'));
+        $categories = Category::all();
+        return Inertia::render("Dashboard", compact('users', 'products', 'categories'));
     }
 }

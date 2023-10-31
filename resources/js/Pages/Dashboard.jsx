@@ -10,6 +10,8 @@ import Table from '@/Components/Table';
 import ProductTable from '@/Components/ProductTable';
 import UserTable from '@/Components/UserTable';
 import AddProduct from '@/Components/AddProduct';
+import CategoryTable from '@/Components/CategoryTable';
+import AddCategory from '@/Components/AddCategory';
 
 
 function CustomTabPanel(props) {
@@ -50,6 +52,7 @@ export default function Dashboard({ auth }) {
     const [value, setValue] = React.useState(0);
     const { users } = usePage().props;
     const { products } = usePage().props;
+    const { categories } = usePage().props;
     const handleChange = (event, newValue) => {
         setValue(newValue);
       };
@@ -68,7 +71,7 @@ export default function Dashboard({ auth }) {
                             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                             <Tab icon={<BsPerson/>} iconPosition='start' label="Users" {...a11yProps(0)} />
                             <Tab icon={<BsBox/>} iconPosition='start' label="Product" {...a11yProps(1)} />
-                            <Tab disabled label="soon" {...a11yProps(2)} />
+                            <Tab label="Categories" {...a11yProps(2)} />
                             </Tabs>
                         </Box>
                         <CustomTabPanel value={value} index={0}>
@@ -79,7 +82,8 @@ export default function Dashboard({ auth }) {
                             <ProductTable data={products}/>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={2}>
-                            <p>soon</p>
+                            <AddCategory/>
+                            <CategoryTable data={categories}/>
                         </CustomTabPanel>
                     </Box>
                 </div>

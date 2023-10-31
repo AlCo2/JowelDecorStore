@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,9 @@ Route::get('/api/getordercreated', [OrderController::class, 'getHowManyOrder'])-
 
 Route::post("/api/addproduct", [ProductController::class, 'addProduct'])->middleware(['auth', CheckAdmin::class]);
 Route::post("/api/deleteproduct/{id}", [ProductController::class, 'deleteProduct'])->middleware(['auth', CheckAdmin::class]);
+
+Route::post("/api/addcategory", [CategoryController::class, 'add_category'])->middleware(['auth', CheckAdmin::class]);
+Route::post("/api/deletecategory/{id}", [CategoryController::class, 'delete_category'])->middleware(['auth', CheckAdmin::class]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

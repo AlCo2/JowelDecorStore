@@ -17,11 +17,7 @@ const Store = ({children}) => {
   } 
   const handleSubmite = (e) =>{
     e.preventDefault();
-    if(search.length>0){
-      setProducts(products.filter(product=>product.title.includes(search)));
-    }else{
-      setProducts(data);
-    }
+    setProducts(data.filter(product=>product.title.includes(search)));
     
   }
   const addToCart = async (id, price) =>{
