@@ -29,9 +29,20 @@ class ProductController extends Controller
         }
     }
 
-    public function updateProduct($request){
+    public function updateProduct(Request $request){
         $id = $request->input("id");
         $product = Product::find($id);
+        $product->title = $request->input("title");
+        $product->Q = $request->input("Q");
+        $product->price = $request->input("price");
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            File::delete(public_path('images/' . $product->image));
+            $product->image  = $imageName;
+        }
+        $product->save();
     }
 
     public function deleteProduct($id){

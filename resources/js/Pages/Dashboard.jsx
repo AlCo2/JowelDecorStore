@@ -79,7 +79,7 @@ export default function Dashboard({ auth }) {
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={1}>
                             <AddProduct/>
-                            <ProductTable data={products}/>
+                            <ProductTable data={products} categories={categories}/>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={2}>
                             <AddCategory/>

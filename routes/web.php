@@ -50,10 +50,14 @@ Route::post('/deleteproduct', [OrderController::class, 'deleteProduct'])->middle
 Route::get('/api/getordercreated', [OrderController::class, 'getHowManyOrder'])->middleware('auth');
 
 Route::post("/api/addproduct", [ProductController::class, 'addProduct'])->middleware(['auth', CheckAdmin::class]);
+Route::post("/api/updateproduct", [ProductController::class, 'updateProduct'])->middleware(['auth', CheckAdmin::class]);
 Route::post("/api/deleteproduct/{id}", [ProductController::class, 'deleteProduct'])->middleware(['auth', CheckAdmin::class]);
 
 Route::post("/api/addcategory", [CategoryController::class, 'add_category'])->middleware(['auth', CheckAdmin::class]);
 Route::post("/api/deletecategory/{id}", [CategoryController::class, 'delete_category'])->middleware(['auth', CheckAdmin::class]);
+
+route::get('/api/get_category/{id}', [CategoryController::class, 'get_product_category'])->middleware(['auth', CheckAdmin::class]);
+route::post('/api/set_category', [CategoryController::class, 'set_category'])->middleware(['auth', CheckAdmin::class]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

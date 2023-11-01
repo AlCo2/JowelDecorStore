@@ -9,6 +9,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsPencil } from 'react-icons/bs';
+import TransfereList from './TransfereList';
+import { TextField } from '@mui/material';
+import { useState } from 'react';
+import { router } from '@inertiajs/react';
+import axios from 'axios';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -19,15 +24,55 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function EditProduct({row}) {
+export default function EditProduct({row, data}) {
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const [values, setValues] = useState({
+    id: row.id,
+    title: row.title,
+    Q: row.Q,
+    price: row.price,
+    image:null,
+  })
+  const [category, setCategory] = useState([]);
+  const [categories, setCategories] = useState([]);
+  function handleChange(e) {
+    const { id, value, type } = e.target;
+    setValues(prevValues => ({
+      ...prevValues,
+      [id]: type === 'file' ? e.target.files[0] : value, // If it's a file input, get the file, otherwise get the value
+    }));
+  }
+  const handleClickOpen = async () => {
+    try {
+      const response = await axios.get('/api/get_category/' + row.id);
+      const categoryData = response.data;
+      setCategory(categoryData);
+  
+      const result = data.filter(item => !categoryData.some(catItem => catItem.id === item.id));
+      setCategories(result);
+  
+      setOpen(true);
+    } catch (error) {
+      console.error("Error fetching category:", error);
+    }
   };
-  const handleClose = (choice) => {
+  const handleClose = async (choice) => {
     if(choice){
-        console.log("saved");
+      values.Q = parseInt(values.Q);
+      values.price = parseInt(values.price);
+      
+      if(Number.isNaN(values.Q) || Number.isNaN(values.price))
+        return;
+      if(values.Q<=0 || values.price<=0)
+        return;
+
+      const data = {
+        id:row.id,
+        data:category
+      }
+      console.log(category);
+      router.post('/api/updateproduct', values);
+      router.post('/api/set_category', data);
     }
     setOpen(false);
   };
@@ -58,7 +103,13 @@ export default function EditProduct({row}) {
           <AiOutlineClose/>
         </IconButton>
         <DialogContent dividers>
-            <p>this is a trial for editing product</p>
+            <div className='flex flex-col gap-2 my-2'>
+              <TextField onChange={handleChange} id='title' value={values.title} name='title' label="Product Name" variant="standard" />
+              <TextField onChange={handleChange} id='price' value={values.price} name='price' label="Price" variant="standard" />
+              <TextField onChange={handleChange} id='Q' value={values.Q} name='Q' label="Q" variant="standard" />
+              <input onChange={handleChange} className='border-2 rounded-md' type="file" name="image" id="image"/>
+            </div>
+            <TransfereList categories={categories} set_product_categories={setCategory} product_categories={category}/>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={()=>handleClose(true)}>
