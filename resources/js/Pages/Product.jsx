@@ -2,7 +2,7 @@ import FixedRating from '@/Components/FiexedRating';
 import Navbar from '@/Components/Navbar';
 import RatingBar from '@/Components/Rating';
 import { router, usePage } from '@inertiajs/react';
-import { Rating } from '@mui/material';
+import { Chip, Rating } from '@mui/material';
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
@@ -12,7 +12,6 @@ import { BsEyeglasses, BsPlus } from 'react-icons/bs';
 const Product = () => {
   const { product } = usePage().props;
   const {categories} = usePage().props;
-  console.log(categories);
   const { auth } = usePage().props;
   const [track_Q, setTrack_Q] = useState(0);  
   const addToCart = async () =>{
@@ -33,12 +32,17 @@ const Product = () => {
     <>
       <Navbar track_Q={track_Q}/>
       <div className='mt-10 pl-10'>
-        <p>Store</p>
+
       </div>
       <div className='flex justify-center'>
         <div className='w-96 h-96 text-center'>
           <img className='border-2 border-black rounded-lg' src={`../images/${product.image}`} alt="" />
           <RatingBar />
+          <div className='flex gap-x-4 flex-wrap justify-center'>
+            {categories.map(category=>(
+              <Chip label={category.name}/>
+            ))}
+          </div>
         </div>
         <div className='flex flex-col gap-5 pl-10'>
           <div className='border-b-2 border-black border-opacity-20'>

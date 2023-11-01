@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, router } from '@inertiajs/react';
+import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 const AddProduct = () => {
     const [values, setValues] = useState({
@@ -32,17 +33,18 @@ const AddProduct = () => {
       }
   return (
         <div className='flex justify-center'>
-            <form onSubmit={handleSubmit} className='p-2 rounded-md border-2 mb-2'>
-              <div className='flex gap-2 my-2'>
-                <input id='title' placeholder='Product Name' onChange={handleChange} value={values.title} type="text" name="product Name" className='w-52 h-8 rounded-md' />
-                <input onChange={handleChange} placeholder='Q' value={values.Q} type="text" name="Q" id="Q"  className='w-20 h-8 rounded-md'/>
-                <input onChange={handleChange} placeholder='price' value={values.price} type="text" name="price" id="price" className='w-20 h-8 rounded-md'/>
+            <form className='p-2 rounded-md border-2 mb-2'>
+              <div className='flex gap-2 my-2'> 
+                <TextField onChange={handleChange} value={values.title} name='product Name' id="title" label="Product Name" variant="standard" />
+                <TextField onChange={handleChange} className='w-20' value={values.Q} name='Q' id="Q" label="Q" variant="standard" />
+                <TextField onChange={handleChange} className='w-20' value={values.price} name='price' id="price" label="price" variant="standard" />
               </div>
               <div className='grid place-content-center'>
                 <input onChange={handleChange} className='border-2 rounded-md' type="file" name="image" id="image"/>
               </div>
               <div className='my-2 grid place-items-center'>
-                <button className='bg-black text-white w-20 h-10 rounded-md'>Submite</button>
+                <Button onClick={handleSubmit} variant="outlined">Submite</Button>
+                
               </div>
             </form>
         </div>

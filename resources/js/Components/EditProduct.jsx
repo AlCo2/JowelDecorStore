@@ -56,7 +56,7 @@ export default function EditProduct({row, data}) {
       console.error("Error fetching category:", error);
     }
   };
-  const handleClose = async (choice) => {
+  const handleClose = (choice) => {
     if(choice){
       values.Q = parseInt(values.Q);
       values.price = parseInt(values.price);
@@ -70,9 +70,8 @@ export default function EditProduct({row, data}) {
         id:row.id,
         data:category
       }
-      console.log(category);
+      axios.post('/api/set_category', data);
       router.post('/api/updateproduct', values);
-      router.post('/api/set_category', data);
     }
     setOpen(false);
   };
